@@ -15,13 +15,16 @@ closeButton.addEventListener("click", () => {
     dialog.close();
 })
 
-addButton.addEventListener("click", (event) => {
+addButton.addEventListener("click", () => {
     //event.preventDefault();
     if (title.value === "" || author.value === "" || pages.value === "") {
         showErrorMessage();
         return;
-    }
-    dialog.close(addBook());
+    };
+    addBook();
+    addBookToLibrary(myLibrary[myLibrary.length - 1]);
+
+    dialog.close();
 });
 
 function Book(title, author, pages, read) {
@@ -48,6 +51,25 @@ function showErrorMessage() {
     errorMessage.style.color = "red";
 }
 
-/*variable for each object property, pressing addButton
-triggers close event, close event saves values of each
-property into respective variables*/
+function addBookToLibrary(book) {
+    let container = document.querySelector(".container")
+    let card = document.createElement("div");
+    card.classList.add("card");
+    let cardTitle = document.createElement("div");
+    let cardAuthor = document.createElement("div");
+    let cardPages = document.createElement("div");
+    let cardRead = document.createElement("div");
+
+    cardTitle.textContent = `${book.title}`;
+    cardAuthor.textContent = `by ${book.author}`;
+    cardPages.textContent = `${book.pages} pages`;
+
+    card.append(cardTitle, cardAuthor, cardPages, cardRead);
+    container.appendChild(card);
+}
+
+function returnLast(array) {
+    return array.at(-1);
+}
+
+/*each card is added by adding 1 to array length?*/
