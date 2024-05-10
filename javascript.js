@@ -6,6 +6,13 @@ let closeButton = document.querySelector("#close");
 let addButton = document.querySelector("#confirm");
 let errorMessage = document.querySelector(".error");
 
+window.addEventListener("load", () => {
+    let premadeBook = new Book("Stardew Valley Almanac", "ConcernedApe", "250", "yes");
+    myLibrary.push(premadeBook);
+    addBookToLibrary(premadeBook);
+    return;
+});
+
 showButton.addEventListener("click", () => {
     form.reset();
     dialog.showModal();
@@ -13,7 +20,7 @@ showButton.addEventListener("click", () => {
 
 closeButton.addEventListener("click", () => {
     dialog.close();
-})
+});
 
 addButton.addEventListener("click", () => {
     //event.preventDefault();
@@ -52,19 +59,32 @@ function showErrorMessage() {
 }
 
 function addBookToLibrary(book) {
-    let container = document.querySelector(".container")
+    let container = document.querySelector(".card-container")
     let card = document.createElement("div");
     card.classList.add("card");
     let cardTitle = document.createElement("div");
     let cardAuthor = document.createElement("div");
     let cardPages = document.createElement("div");
-    let cardRead = document.createElement("div");
 
     cardTitle.textContent = `${book.title}`;
     cardAuthor.textContent = `by ${book.author}`;
     cardPages.textContent = `${book.pages} pages`;
 
-    card.append(cardTitle, cardAuthor, cardPages, cardRead);
+    if(book.read === "yes") {
+        let haveRead = document.createElement("input");
+        haveRead.setAttribute("type", "image");
+        haveRead.setAttribute("src", "images/bookmark.svg")
+        haveRead.classList.add("haveRead");
+        card.append(haveRead);
+    } else if(book.read === "no") {
+        let notRead = document.createElement("input");
+        notRead.setAttribute("type", "image");
+        notRead.setAttribute("src", "images/bookmark-outline.svg");
+        notRead.classList.add("notRead");
+        card.append(notRead);
+    }
+
+    card.append(cardTitle, cardAuthor, cardPages);
     container.appendChild(card);
 }
 
