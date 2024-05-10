@@ -11,6 +11,9 @@ window.addEventListener("load", () => {
     let premadeBook = new Book("Stardew Valley Almanac", "ConcernedApe", "250", "yes");
     myLibrary.push(premadeBook);
     addBookToLibrary(premadeBook);
+    let premadeBook2 = new Book("The Little Train That Couldn't", "Sims 4", "20", "no");
+    myLibrary.push(premadeBook2);
+    addBookToLibrary(premadeBook2);
     return;
 });
 
@@ -61,6 +64,7 @@ function addBookToLibrary(book) {
     let card = document.createElement("div");
     card.classList.add("card");
     let cardTitle = document.createElement("div");
+    cardTitle.classList.add("cardTitle")
     let cardAuthor = document.createElement("div");
     let cardPages = document.createElement("div");
 
@@ -74,7 +78,14 @@ function addBookToLibrary(book) {
     notRead.setAttribute("type", "image");
     notRead.setAttribute("src", "images/bookmark-outline.svg");
 
-    card.append(cardTitle, cardAuthor, cardPages, bookmark);
+    let remove = document.createElement("input");
+    remove.classList.add("remove");
+    remove.setAttribute("type", "image");
+    remove.setAttribute("src", "images/close-circle-outline.svg");
+    remove.setAttribute("data-index", `${myLibrary.length - 1}`);
+    remove.setAttribute("name", "remove")
+
+    card.append(cardTitle, cardAuthor, cardPages, bookmark, remove);
     container.appendChild(card);
 
     cardTitle.textContent = `${book.title}`;
@@ -98,6 +109,13 @@ function addBookToLibrary(book) {
         bookmark.removeChild(notRead);
         bookmark.appendChild(haveRead)
         book.read = "yes";
+        return;
+    });
+
+    remove.addEventListener("click", function () {
+        let i = remove.dataset.index;
+        myLibrary.splice(i, 1);
+        this.parentNode.parentNode.removeChild(this.parentNode);
         return;
     });
 };
