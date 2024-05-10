@@ -1,4 +1,5 @@
 let myLibrary = [];
+
 let dialog = document.querySelector("dialog")
 let showButton = document.querySelector("#add");
 let form = document.querySelector("form");
@@ -48,8 +49,7 @@ function addBook() {
     let read = dialog.querySelector("input[type='radio']:checked").value;
 
     let newBook = new Book(title, author, pages, read);
-    let libraryBook = newBook;
-    myLibrary.push(libraryBook);
+    myLibrary.push(newBook);
     newBook = null;
 }
 
@@ -66,30 +66,57 @@ function addBookToLibrary(book) {
     let cardAuthor = document.createElement("div");
     let cardPages = document.createElement("div");
 
+    let bookmark = document.createElement("div");
+    let haveRead = document.createElement("input");
+    haveRead.classList.add("haveRead");
+    haveRead.setAttribute("type", "image");
+    haveRead.setAttribute("src", "images/bookmark.svg")
+    let notRead = document.createElement("input");
+    notRead.classList.add("notRead");
+    notRead.setAttribute("type", "image");
+    notRead.setAttribute("src", "images/bookmark-outline.svg");
+
+    card.append(cardTitle, cardAuthor, cardPages, bookmark);
+    container.appendChild(card);
+
     cardTitle.textContent = `${book.title}`;
     cardAuthor.textContent = `by ${book.author}`;
     cardPages.textContent = `${book.pages} pages`;
 
-    if(book.read === "yes") {
-        let haveRead = document.createElement("input");
-        haveRead.setAttribute("type", "image");
-        haveRead.setAttribute("src", "images/bookmark.svg")
-        haveRead.classList.add("haveRead");
-        card.append(haveRead);
-    } else if(book.read === "no") {
-        let notRead = document.createElement("input");
-        notRead.setAttribute("type", "image");
-        notRead.setAttribute("src", "images/bookmark-outline.svg");
-        notRead.classList.add("notRead");
-        card.append(notRead);
-    }
+    if (book.read === "yes") {
+        bookmark.appendChild(haveRead)
+    } else if (book.read === "no") {
+        bookmark.appendChild(notRead)
+    };
 
-    card.append(cardTitle, cardAuthor, cardPages);
-    container.appendChild(card);
-}
+    haveRead.addEventListener("click", () => {
+        bookmark.removeChild(haveRead);
+        bookmark.appendChild(notRead)
+        book.read = "no";
+        return;
+    });
 
-function returnLast(array) {
-    return array.at(-1);
-}
+    notRead.addEventListener("click", () => {
+        bookmark.removeChild(notRead);
+        bookmark.appendChild(haveRead)
+        book.read = "yes";
+        return;
+    });
+};
+
+function markRead(status, bookmark) {
+    bookmark.appendChild(status);
+    status.setAttribute("type", "image");
+    status.setAttribute("src", "images/bookmark.svg")
+    status.classList.add("haveRead");
+};
+
+function markNotRead(status, bookmark) {
+    bookmark.appendChild(status);
+    status.setAttribute("type", "image");
+    status.setAttribute("src", "images/bookmark-outline.svg");
+    status.classList.add("notRead");
+};
+
 
 /*each card is added by adding 1 to array length?*/
