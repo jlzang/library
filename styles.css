@@ -1,0 +1,65 @@
+@font-face {
+    font-family: AbhayaLibre;
+    src: url(fonts/AbhayaLibre-SemiBold.ttf);
+}
+
+:root {
+    --beige: rgb(228, 197, 158);
+    --brown: rgb(175, 130, 96);
+    --maroon: rgb(128, 61, 59); /*#803d3b*/
+    --black: rgb(22, 19, 18);
+}
+
+body {
+    background-color: var(--beige);
+    color: var(--black);
+    font-family: AbhayaLibre, 'Times New Roman', Times, serif;
+    appearance: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 30px;
+    padding: 20px;
+}
+
+.btn {
+    border-style: none;
+    border-radius: 10px;
+    height: 40px;
+    background-color: var(--maroon);
+    color: white;
+    font-family: AbhayaLibre, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    text-align: center;
+    line-height: 35px;
+    padding: 5px 15px;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 5px;
+    background-color: var(--brown);
+    padding: 40px 15px 15px;
+    position: relative;
+}
+
+.haveRead,
+.notRead {
+    width: 40px;
+    height: auto;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+}
+
+
+
