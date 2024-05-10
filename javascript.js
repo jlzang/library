@@ -24,14 +24,12 @@ closeButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
-    //event.preventDefault();
     if (title.value === "" || author.value === "" || pages.value === "") {
         showErrorMessage();
         return;
     };
     addBook();
     addBookToLibrary(myLibrary[myLibrary.length - 1]);
-
     dialog.close();
 });
 
@@ -103,20 +101,3 @@ function addBookToLibrary(book) {
         return;
     });
 };
-
-function markRead(status, bookmark) {
-    bookmark.appendChild(status);
-    status.setAttribute("type", "image");
-    status.setAttribute("src", "images/bookmark.svg")
-    status.classList.add("haveRead");
-};
-
-function markNotRead(status, bookmark) {
-    bookmark.appendChild(status);
-    status.setAttribute("type", "image");
-    status.setAttribute("src", "images/bookmark-outline.svg");
-    status.classList.add("notRead");
-};
-
-
-/*each card is added by adding 1 to array length?*/
