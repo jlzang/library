@@ -115,3 +115,5 @@ function addBookToLibrary(book) {
         return;
     });
 };
+
+//future features: change read status through Book object prototype rather through functions
