@@ -10,35 +10,34 @@
 
 <body>
     <dialog>
-        <button id="close">X</button>
+        <input type="image" id="close" src="images/close-circle-outline.svg">
         <form>
-            <div>
-                <label for="title">Title:</label>
+            <div class="form-row">
+                <label for="title">Title</label>
                 <input type="text" id="title" name="title" required autofocus>
             </div>
-            <div>
-                <label for="author">Author:</label>
+            <div class="form-row">
+                <label for="author">Author</label>
                 <input type="text" id="author" name="author" required>
             </div>
-            <div>
-                <label for="pages">Number of pages:</label>
+            <div class="form-row">
+                <label for="pages">Number of pages</label>
                 <input type="number" id="pages" name="pages" required>
             </div>
-            <fieldset>
+            <fieldset class="form-row">
                 <legend>Have you read it?</legend>
                 <div>
+                    <input type="radio" name="read" value="yes" class="radio" id="yes" required>
                     <label for="yes">Yes</label>
-                    <input type="radio" name="read" value="yes" id="yes" required>
                 </div>
                 <div>
+                    <input type="radio" name="read" value="no" class="radio" id="no">
                     <label for="no">No</label>
-                    <input type="radio" name="read" value="no" id="no">
                 </div>
             </fieldset>
-            <div>
+            <div class="form-row">
                 <button type="submit" formmethod="dialog" class="btn" id="confirm">Add new book</button>
             </div>
-            <div class="error"></div>
         </form>
     </dialog>
     <div class="container">
