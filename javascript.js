@@ -27,10 +27,6 @@ closeButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
-    if (title.value === "" || author.value === "" || pages.value === "") {
-        showErrorMessage();
-        return;
-    };
     addBook();
     addBookToLibrary(myLibrary[myLibrary.length - 1]);
     dialog.close();
