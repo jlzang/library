@@ -6,7 +6,9 @@
 :root {
     --beige: rgb(228, 197, 158);
     --brown: rgb(175, 130, 96);
-    --maroon: rgb(128, 61, 59); /*#803d3b*/
+    --maroon: rgb(128, 61, 59);
+    /*#803d3b*/
+    --coffee: rgb(105, 59, 23);
     --black: rgb(22, 19, 18);
 }
 
@@ -15,6 +17,114 @@ body {
     color: var(--black);
     font-family: AbhayaLibre, 'Times New Roman', Times, serif;
     appearance: none;
+}
+
+dialog {
+    height: 350px;
+    width: 550px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--coffee);
+    background-color: var(--beige);
+    position: relative;
+    padding: 35px 30px 30px;
+    color: var(--black);
+    font-size: 22px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-row input {
+    background-color: white;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"] {
+    width: 540px;
+    height: 25px;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: var(--coffee);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline-style: none;
+    border-color: var(--maroon);
+    box-shadow: 1px 1px 5px var(--coffee);
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+legend {
+    padding: 0;
+}
+
+input[type="radio"] {
+    appearance: none;
+    place-content: center;
+    border: 0.15em solid var(--coffee);
+    border-radius: 50%;
+    width: 1.15em;
+    height: 1.15em;
+    margin: 0;
+    transform: translateY(-0.075em);
+    position: relative;
+}
+
+input[type="radio"]::before {
+    content: "";
+    height: 12px;
+    width: 12px;
+    background-color: var(--maroon);
+    box-shadow: inset 0 0 0 0.1em white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    visibility: hidden;
+}
+
+input[type="radio"]:checked::before {
+    visibility: visible;
+}
+
+#close {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#confirm {
+    margin-top: auto;
 }
 
 .container {
@@ -30,6 +140,8 @@ body {
     gap: 30px;
     padding: 20px;
 }
+
+button {}
 
 .btn {
     border-style: none;
@@ -47,9 +159,16 @@ body {
 
 .card {
     border-radius: 5px;
+    box-shadow: 3px 3px 5px var(--coffee);
     background-color: var(--brown);
-    padding: 40px 15px 15px;
+    padding: 50px 20px 15px;
     position: relative;
+    font-size: 20px;
+}
+
+.cardTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .haveRead,
@@ -61,5 +180,9 @@ body {
     top: -10px;
 }
 
-
-
+.remove {
+    width: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
